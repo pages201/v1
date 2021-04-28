@@ -334,7 +334,7 @@ class Main extends CI_Controller {
 						if ($posn === false) {
 						}else{
 							$error_net[] = 'add';
-							$this->main_model->insert('black_net', ['net' => $log['net'], 'cause' => 'auto ban']);
+							//$this->main_model->insert('black_net', ['net' => $log['net'], 'cause' => 'auto ban']);
 							$error_data['errors'][] = 'Запрещенное ISP, Подсеть автоматически заблокирована';
 						}
 					}
@@ -366,13 +366,13 @@ class Main extends CI_Controller {
 				}
 
 				if(@$headers['Cache-Control'] == "no-cache"){
-					$error_data['errors'][] = 'Кэш фильтр, IP добавлен в черный список';
-					$this->main_model->insert('black_ip', ['ip' => $log['ip'], 'country' => $db_country, 'cause' => 'Кэш фильтр', 'comment' => $log['descr']]);
+					//$error_data['errors'][] = 'Кэш фильтр, IP добавлен в черный список';
+					//$this->main_model->insert('black_ip', ['ip' => $log['ip'], 'country' => $db_country, 'cause' => 'Кэш фильтр', 'comment' => $log['descr']]);
 				}
 
 				if($this->agent->platform == 'Linux' AND !$this->agent->is_mobile()){
-					$error_data['errors'][] = 'Десктоп линукс фильтр, IP добавлен в черный список';
-					$this->main_model->insert('black_ip', ['ip' => $log['ip'], 'country' => $db_country, 'cause' => 'Десктоп линукс фильтр', 'comment' => $log['descr']]);
+					//$error_data['errors'][] = 'Десктоп линукс фильтр, IP добавлен в черный список';
+					//$this->main_model->insert('black_ip', ['ip' => $log['ip'], 'country' => $db_country, 'cause' => 'Десктоп линукс фильтр', 'comment' => $log['descr']]);
 				}
 
 				// if(!$headers['Accept-Language']){
@@ -382,7 +382,7 @@ class Main extends CI_Controller {
 
 //Если юзер агент менялся более 10х раз
 				$count_ua = $this->main_model->count('logs', ['ip' => $log['ip'], 'preview' => 0], 'user_agent');
-				if(@$count_ua >= 10){
+				if(@$count_ua >= 100){
 					$error_data['errors'][] = 'Частая смена UA, IP добавлен в черный список';
 					$this->main_model->insert('black_ip', ['ip' => $log['ip'], 'country' => $db_country, 'cause' => 'Частая смена UA', 'comment' => $log['descr']]);
 				}
@@ -641,7 +641,7 @@ public function check_ip(){
 						if ($posn === false) {
 						}else{
 							$error_net[] = 'add';
-							$this->main_model->insert('black_net', ['net' => $log['net'], 'cause' => 'auto ban']);
+							//$this->main_model->insert('black_net', ['net' => $log['net'], 'cause' => 'auto ban']);
 							$error_data['errors'][] = 'Запрещенное ISP, Подсеть автоматически заблокирована';
 						}
 					}
@@ -673,13 +673,13 @@ public function check_ip(){
 				}
 
 				if(@$headers['Cache-Control'] == "no-cache"){
-					$error_data['errors'][] = 'Кэш фильтр, IP добавлен в черный список';
-					$this->main_model->insert('black_ip', ['ip' => $log['ip'], 'country' => $db_country, 'cause' => 'Кэш фильтр', 'comment' => $log['descr']]);
+					//$error_data['errors'][] = 'Кэш фильтр, IP добавлен в черный список';
+					//$this->main_model->insert('black_ip', ['ip' => $log['ip'], 'country' => $db_country, 'cause' => 'Кэш фильтр', 'comment' => $log['descr']]);
 				}
 
 				if($this->agent->platform == 'Linux' AND !$this->agent->is_mobile()){
-					$error_data['errors'][] = 'Десктоп линукс фильтр, IP добавлен в черный список';
-					$this->main_model->insert('black_ip', ['ip' => $log['ip'], 'country' => $db_country, 'cause' => 'Десктоп линукс фильтр', 'comment' => $log['descr']]);
+					//$error_data['errors'][] = 'Десктоп линукс фильтр, IP добавлен в черный список';
+					//$this->main_model->insert('black_ip', ['ip' => $log['ip'], 'country' => $db_country, 'cause' => 'Десктоп линукс фильтр', 'comment' => $log['descr']]);
 				}
 
 				// if(!$headers['Accept-Language']){
@@ -689,7 +689,7 @@ public function check_ip(){
 
 //Если юзер агент менялся более 10х раз
 				$count_ua = $this->main_model->count('logs', ['ip' => $log['ip'], 'preview' => 0], 'user_agent');
-				if(@$count_ua >= 10){
+				if(@$count_ua >= 100){
 					$error_data['errors'][] = 'Частая смена UA, IP добавлен в черный список';
 					$this->main_model->insert('black_ip', ['ip' => $log['ip'], 'country' => $db_country, 'cause' => 'Частая смена UA', 'comment' => $log['descr']]);
 				}
